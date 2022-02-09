@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+     "target": "es5",
+     "module": "commonjs",
+     "resolveJsonModule": true,
+     "allowJs": true,
+     "outDir": "./dist",
+     "rootDir": "./src",
+     "removeComments": true,
+     "strict": false,
+     "baseUrl": "./src",
+     "paths": {
+        "@modules/*": [
+           "modules/*"
+        ],
+        "@shared/*": [
+           "shared/*"
+        ],
+        "@middlewares/*": [
+           "middlewares/*"
+        ],
+        "@providers/*": [
+           "providers/*"
+        ],
+        "@utils/*": [
+           "utils/*"
+        ]
+     },
+     "typeRoots": [
+        "./node_modules/@types",
+        "./src/@types"
+     ],
+     "esModuleInterop": true,
+     "experimentalDecorators": true,
+     "emitDecoratorMetadata": true,
+     "skipLibCheck": true,
+     "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+     "./src"
+  ]
+}

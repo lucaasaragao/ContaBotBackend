@@ -1,0 +1,1 @@
+export default (min:number, max:number) => { return Math.floor(Math.random() * ((max || 2147483647) - +min) + +min) }
