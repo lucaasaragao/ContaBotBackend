@@ -5,6 +5,8 @@ import {
   ObjectID
 } from "typeorm"
 
+import { INoteDTO } from "../dtos/INoteDTO"
+
 @Entity("notes")
 class Note {
   @ObjectIdColumn()
@@ -14,7 +16,16 @@ class Note {
   owner: string
 
   @Column()
-  noteBff: string
+  qId: string
+
+  @Column()
+  found: INoteDTO[]
+
+  @Column()
+  errors: string[]
+
+  @Column()
+  loaded: number
 }
 
 export { Note }

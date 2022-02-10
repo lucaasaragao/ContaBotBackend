@@ -4,9 +4,6 @@ import { getRepository, Repository } from "typeorm"
 
 import { INotesRepository } from "../INotesRepository"
 
-import { ObjectId } from "mongodb"
-
-
 @injectable()
 class NotesRepository implements INotesRepository {
   private repository: Repository<Note>
@@ -14,23 +11,27 @@ class NotesRepository implements INotesRepository {
     this.repository = getRepository(Note)
   }
 
-  async create({ owner, noteBff }): Promise<void> {
-    const newNote = this.repository.create({ owner, noteBff })
+  async create({ owner, qId, loaded }): Promise<void> {
+    const newNote = this.repository.create({ owner, qId, loaded, found: [], errors: [] })
     await this.repository.save(newNote)
   }
 
-  async find({ id }): Promise<Note | undefined> {
-    if (id) id = new ObjectId(id)
-    return await this.repository.findOne({ id })
+  async find({ qId }): Promise<Note | undefined> {
+    return await this.repository.findOne({ qId })
   }
 
   async list({ owner }): Promise<Note[] | undefined> {
     return await this.repository.find({ owner })
   }
 
-  async delete({ id }): Promise<void> {
-    if (id) id = new ObjectId(id)
-    await this.repository.delete({ id })
+  async delete({ qId }): Promise<void> {
+    await this.repository.delete({ qId })
+  }
+
+  async push({ qId, key, value }): Promise<void> {
+    const note = await this.repository.findOne({ qId })
+    note[key].push(value)
+    await this.repository.save(note)
   }
 }
 

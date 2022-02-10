@@ -1,13 +1,13 @@
 import { Router } from "express"
 
-import { SaveNoteController } from "@modules/notes/useCases/saveNote/SaveNoteControllers"
+import { ConsultNoteController } from "@modules/notes/useCases/consultNote/ConsultNoteController"
 
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated"
 
-const saveNoteController = new SaveNoteController()
+const consultNoteController = new ConsultNoteController()
 
 const notesRoutes = Router()
 
-notesRoutes.post("/save", ensureAuthenticated, saveNoteController.handle)
+notesRoutes.post("/consult", ensureAuthenticated, consultNoteController.handle)
 
 export { notesRoutes }
