@@ -19,3 +19,4 @@ export { default as xlsxJson } from "./parser/xlsxJson"
 
 //@Crypto
 export { default as md5Hash } from "./crypto/md5Hash"
+export { default as AES } from "./crypto/aes"

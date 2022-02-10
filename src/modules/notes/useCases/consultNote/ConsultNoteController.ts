@@ -18,17 +18,21 @@ class ConsultNoteController {
       authList.push({ username, password })
     } else if (cType.includes("multipart/form-data")) {
       const z:any = await saveBodyFile(request)
-      const jsonData = await xlsxJson(z.file)
+      const jsonData:any = await xlsxJson(z.file)
       
       if (!jsonData[0].hasOwnProperty('usuario'))
-        return response.status(404).send({ status: "failure", message: "Seu arquivo excel precisa conter a coluna 'usuario'." })
+        return response.status(400).send({ status: "failure", message: "Seu arquivo excel precisa conter a coluna 'usuario'." })
       if (!jsonData[0].hasOwnProperty('senha'))
-        return response.status(404).send({ status: "failure", message: "Seu arquivo excel precisa conter a coluna 'senha''." })
+        return response.status(400).send({ status: "failure", message: "Seu arquivo excel precisa conter a coluna 'senha''." })
+      if (typeof jsonData[0].usuario !== "string" || typeof jsonData[0].senha !== "string")
+        return response.status(400).send({ status: "failure", message: "As colunas precisam serem formatadas para 'Texto'" })
+      if (jsonData.length > 250)
+        return response.status(400).send({ status: "failure", message: "Voce ultrapassou o limite de 250 linhas" })
 
       for (let auth of jsonData)
         authList.push({ 
-          username: String(auth['usuario']).trim(), 
-          password: String(auth['senha']).trim() 
+          username: auth['usuario'], 
+          password: auth['senha'] 
         })
     } else {
       return response.status(400).send({ status: "failure", message: "Tipo de entrada invalida." })
