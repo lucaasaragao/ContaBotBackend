@@ -11,6 +11,7 @@
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
+    "formidable": "^2.0.1",
     "fs-extra": "^10.0.0",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
@@ -29,7 +30,8 @@
     "tsyringe": "^4.6.0",
     "typeorm": "^0.2.41",
     "uuid": "^8.3.2",
-    "winston": "^3.4.0"
+    "winston": "^3.4.0",
+    "xlsx": "^0.18.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

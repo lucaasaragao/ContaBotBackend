@@ -14,6 +14,8 @@ export { default as parseJsonBody } from "./parser/parseJsonBody"
 export { default as duplicateCount } from "./parser/duplicateCount"
 export { default as isNullUndefined } from "./parser/isNullUndefined"
 export { default as translate } from "./parser/translate"
+export { default as saveBodyFile } from "./parser/saveBodyFile"
+export { default as xlsxJson } from "./parser/xlsxJson"
 
 //@Crypto
 export { default as md5Hash } from "./crypto/md5Hash"

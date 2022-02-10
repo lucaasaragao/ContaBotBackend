@@ -18,8 +18,9 @@ class ConsultNoteUseCase {
     })
 
     for (let auth of authList) {
+      console.log(auth)
       const reference = `${auth.username}|${auth.password}`
-      const nfse = await notesProvider.get({ ...auth })
+      const nfse = await notesProvider.get({ username: auth.username, password: auth.password })
 
       if (!nfse) {
         await this.notesRepository.push({ qId, key: "errors", value: reference })
